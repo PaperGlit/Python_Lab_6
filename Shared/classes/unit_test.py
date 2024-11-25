@@ -26,3 +26,7 @@ class UnitTest(unittest.TestCase):
     def test_invalid_operation(self):
         with self.assertRaises(ValueError):
             Calculator(10, 0, "&")
+        with self.assertRaises(ValueError):
+            Calculator("a", 0, "*")
+        with self.assertRaises(ValueError):
+            Calculator(0, "b", "+")

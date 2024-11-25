@@ -7,6 +7,15 @@ import unittest
 
 
 class Console:
+    _instances = {}
+
+    def __call__(self, *args, **kwargs):
+        if self not in self._instances:
+            self._instances[self] = super(Console, self).__call__(*args, **kwargs)
+        else:
+            self._instances[self].__init__(*args, **kwargs)
+        return self._instances[self]
+
     def __init__(self, digits = 3):
         self.digits = digits
         self.prompt()

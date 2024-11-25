@@ -37,7 +37,6 @@ class Validators:
     def validate_num(digits, num_prompt="Enter the number (or MR / MC)"):
         while True:
             value = (input(num_prompt)).lower()
-
             if value.lower() == "mr":
                 recovered_value = round(GlobalVariables.memory)
                 print("Recovered value: " + str(recovered_value))
@@ -50,6 +49,13 @@ class Validators:
                     return round(float(value))
                 except ValueError:
                     print("Please enter a valid number / memory operation")
+
+    @staticmethod
+    def validate_number(value, digits):
+        try:
+            return round(float(value), digits)
+        except ValueError:
+            raise ValueError("Please enter a valid number")
 
     @staticmethod
     def validate_operator():
